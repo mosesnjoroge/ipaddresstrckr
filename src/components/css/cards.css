@@ -13,18 +13,21 @@
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
-.card-category h6{
+.card-category h6,h3{
   font-size: 10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  /* grid-gap: 2px; */
-  /* line-height: 0%; */
+  /* display: flex;
+  flex-direction: row; */
   margin-top: -35px;
 }
+.card-category h3{
+  margin-top:0px !important;
+  font-size: 25px!important;
+  margin-top: 5px!important;
+}
 /* Solid border */
-/* hr.solid {
-  border-top: 3px solid #0e0d0d;
-} */
+hr.solid {
+  border-top: 2px solid #0e0d0d;
+}
 
  /* Smallest device */
 @media (min-width: 100px) and (max-width: 575px) {
