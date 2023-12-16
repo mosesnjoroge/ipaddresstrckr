@@ -1,14 +1,14 @@
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Banner from './components/banner'
 
 function App() {
 
 
   return (
-    <>
-      <div>
-
-      </div>
-    </>
+    <div className='bg-primary-bg-subtle'>
+      <Banner/>
+    </div>
   )
 }
 
