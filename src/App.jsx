@@ -5,7 +5,6 @@ import InfoBox from './components/InfoBox';
 
 function App() {
 
-
   return (
     <div className='app'>
       <Banner/>
