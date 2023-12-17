@@ -30,7 +30,7 @@ export default function Banner() {
 
   // Search for an Ipaddress
   // async function search_Ip_address(ip_address){
-  //   const api_key = "at_9zLazwhedqY57YjmEW8ZCBzKBg3MI"
+  //   const api_key = "###"
   //   const request = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${api_key}&ipAddress=${ip_address}`)
   //   const response = response.json()
   // }
