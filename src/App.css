@@ -1,4 +1,5 @@
 @import url(./components/css/cards.css);
+@import url(./components/css/banner.css);
 #root {
   max-width: 1280px;
   margin: 0 auto;

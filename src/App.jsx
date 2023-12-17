@@ -2,7 +2,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Banner from './components/banner';
 import InfoBox from './components/InfoBox';
-import GeoDisplay from './components/GeoDiplay';
+// import GeoDisplay from './components/GeoDiplay';
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
         <InfoBox/>
       </div>
       <div>
-        <GeoDisplay/>
+        {/* <GeoDisplay/> */}
       </div>
     </div>
   )
