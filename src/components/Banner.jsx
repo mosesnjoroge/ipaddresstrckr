@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Leaflet from "leaflet";
+// import Leaflet from "leaflet";
 
 export default function Banner() {
   const [searchInput, setSearchInput] = useState("");
@@ -18,58 +18,57 @@ export default function Banner() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // pass the ip address to the search_ip_address function
-    searchIpAddress(searchInput);
+    // searchIpAddress(searchInput);
     // console.log(searchInput)
   }
 
-  // Search for an Ipaddress
-  async function searchIpAddress(searchInput){
-    const api_key = "at_9zLazwhedqY57YjmEW8ZCBzKBg3MI"
-    const request = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${api_key}&ipAddress=${searchInput}`)
-    const response = response.json()
+  // // Search for an Ipaddress
+  // async function searchIpAddress(searchInput){
+  //   const api_key = "at_9zLazwhedqY57YjmEW8ZCBzKBg3MI"
+  //   const request = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${api_key}&ipAddress=${searchInput}`)
+  //   const response = response.json()
 
-    // update the UI on the page
-    const [location, ip, isp] = response;
-    const cityLocation = location.city
-    const timezoneLocation = location.timezone
-    updateUI(ip, cityLocation, timezoneLocation, isp)
-  }
-  // update UI function
-  const updateUI = (ip, cityLocation, timezoneLocation, isp)=> {
-    /* select all the elements on the page */
-    const address = document.querySelector(".address");
-    const city = document.querySelector(".location");
-    const utc = document.querySelector(".utc");
-    const isprovider = document.querySelector(".isp");
+  //   // update the UI on the page
+  //   const [location, ip, isp] = response;
+  //   const cityLocation = location.city
+  //   const timezoneLocation = location.timezone
+  //   updateUI(ip, cityLocation, timezoneLocation, isp)
+  // }
+  // // update UI function
+  // const updateUI = (ip, cityLocation, timezoneLocation, isp)=> {
+  //   /* select all the elements on the page */
+  //   const address = document.querySelector(".address");
+  //   const city = document.querySelector(".location");
+  //   const utc = document.querySelector(".utc");
+  //   const isprovider = document.querySelector(".isp");
 
 
-    /* Update all the elements on the page */
-    if (createMap !== undefined && createMap !== null) {
-      createMap.remove()
-   }
-    createMap(location.lat, location.lng, location.country, location.region)
-  }
-  // generate map
-  const createMap =(lat, lng)=> {
-    const map = Leaflet.map('map').setView([lat, lng, country, region], 14);
-    Leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 20,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+  //   /* Update all the elements on the page */
+  //   if (createMap !== undefined && createMap !== null) {
+  //     createMap.remove()
+  //  }
+  //   createMap(location.lat, location.lng, location.country, location.region)
+  // }
+  // // generate map
+  // const createMap =(lat, lng)=> {
+  //   const map = Leaflet.map('map').setView([lat, lng, country, region], 14);
+  //   Leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //       maxZoom: 20,
+  //       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  //   }).addTo(map);
 
-    Leaflet.marker([lat, lng]).addTo(map)
-    	.bindPopup(`${region}, ${country}`)
-    	.openPopup();
-  }
+  //   Leaflet.marker([lat, lng]).addTo(map)
+  //   	.bindPopup(`${region}, ${country}`)
+  //   	.openPopup();
+  // }
   return(
     <div className="banner-search-section">
-      <div className='search-box pb-4 container'>
+      <div className='search-box pt-4 container'>
         <h2>
           IP Address Tracker
         </h2>
         <form className="map-form container" onSubmit={handleSubmit}>
           <input
-            // className="form-control w-70"
             type="text"
             placeholder="Search for any IP address or domain"
             id="search"

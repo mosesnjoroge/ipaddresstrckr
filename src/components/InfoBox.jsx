@@ -1,7 +1,7 @@
 
 export default function InfoBox() {
   return(
-    <div className="container">
+    <div className="container pt-2">
       <div className="card-category hstack gap-5">
         <div className="location-box">
           <h6>

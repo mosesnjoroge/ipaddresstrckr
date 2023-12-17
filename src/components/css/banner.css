@@ -1,5 +1,6 @@
 .banner-search-section{
-  background-color: rgb(174, 116, 30)!important;
+  background-color: #5bc0de;
+  height:220px;
 }
 .map-form{
   display: flex;
