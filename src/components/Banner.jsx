@@ -1,39 +1,66 @@
 import { useState } from "react";
+import Leaflet from "leaflet";
 
 export default function Banner() {
   const [searchInput, setSearchInput] = useState("");
+  // const [address,setAddress] = useState("");
+  // const [city,setCity] = useState("");
+  // const [utc,setUtc] = useState("");
+  // const [ispProvider,setIspProvider] = useState("");
 
-  // change handler
+  // updating dynamic user entry
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
-    console.log(setSearchInput)
   }
+
+  // get the value of the form field to search
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchInput)
+    // pass the ip address to the search_ip_address function
+    searchIpAddress(searchInput);
+    // console.log(searchInput)
   }
-  /* Select form */
-  // const search_form = document.querySelectorByClass(".map-form");
-
-  // search_form.addEventListener("submit", (event) => {
-  //     /* stop form from auto submiting on click */
-  //     event.preventDefault();
-
-  //     /* get the value of the form field */
-  //     const value = document.querySelector("#search").value;
-
-  //     /* Pass the Ip address to the search_Ip_Address() function */
-  //     // search_Ip_Address(value);
-  //     console.log(value)
-  // })
 
   // Search for an Ipaddress
-  // async function search_Ip_address(ip_address){
-  //   const api_key = "###"
-  //   const request = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${api_key}&ipAddress=${ip_address}`)
-  //   const response = response.json()
-  // }
+  async function searchIpAddress(searchInput){
+    const api_key = "at_9zLazwhedqY57YjmEW8ZCBzKBg3MI"
+    const request = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${api_key}&ipAddress=${searchInput}`)
+    const response = response.json()
+
+    // update the UI on the page
+    const [location, ip, isp] = response;
+    const cityLocation = location.city
+    const timezoneLocation = location.timezone
+    updateUI(ip, cityLocation, timezoneLocation, isp)
+  }
+  // update UI function
+  const updateUI = (ip, cityLocation, timezoneLocation, isp)=> {
+    /* select all the elements on the page */
+    const address = document.querySelector(".address");
+    const city = document.querySelector(".location");
+    const utc = document.querySelector(".utc");
+    const isprovider = document.querySelector(".isp");
+
+
+    /* Update all the elements on the page */
+    if (createMap !== undefined && createMap !== null) {
+      createMap.remove()
+   }
+    createMap(location.lat, location.lng, location.country, location.region)
+  }
+  // generate map
+  const createMap =(lat, lng)=> {
+    const map = Leaflet.map('map').setView([lat, lng, country, region], 14);
+    Leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    Leaflet.marker([lat, lng]).addTo(map)
+    	.bindPopup(`${region}, ${country}`)
+    	.openPopup();
+  }
   return(
     <div className="container">
       <div className='search-box pb-4'>

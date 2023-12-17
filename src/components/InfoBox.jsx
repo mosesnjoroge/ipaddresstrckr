@@ -7,7 +7,7 @@ export default function InfoBox() {
           <h6>
             IP ADDRESS
           </h6>
-          <h3>
+          <h3 className="address">
             testing
           </h3>
         </div>
@@ -16,13 +16,13 @@ export default function InfoBox() {
           <h6>
             LOCATION
           </h6>
-          <h3>
+          <h3 className="location">
             testing
           </h3>
         </div>
         <div className="vr"/>
         <div className="timezone-box">
-          <h6>
+          <h6 className="utc">
             TIMEZONE
           </h6>
           <h3>
@@ -34,24 +34,12 @@ export default function InfoBox() {
           <h6>
             ISP
           </h6>
-          <h3>
+          <h3 className="isp">
             testing
           </h3>
         </div>
       </div>
-      {/* <div className="cards">
-        <div className="card-category">
-          Breakfast
-        </div>
 
-        <div className="card-category">
-          Lunch
-        </div>
-
-        <div className="card-category">
-          Dinner
-        </div>
-      </div> */}
     </div>
   )
 }
