@@ -1,7 +1,7 @@
 
 export default function InfoBox() {
   return(
-    <div className="container pt-2">
+    <div className="container">
       <div className="card-category hstack gap-5">
         <div className="location-box">
           <h6>
@@ -11,7 +11,7 @@ export default function InfoBox() {
             testing
           </h3>
         </div>
-        <div className="vr"/>
+        <div className="vr"></div>
         <div className="ip-address-box">
           <h6>
             LOCATION
@@ -20,7 +20,7 @@ export default function InfoBox() {
             testing
           </h3>
         </div>
-        <div className="vr"/>
+        <div className="vr"></div>
         <div className="timezone-box">
           <h6 className="utc">
             TIMEZONE
@@ -29,7 +29,7 @@ export default function InfoBox() {
             testing
           </h3>
         </div>
-        <div className="vr"/>
+        <div className="vr"></div>
         <div className="isp-box">
           <h6>
             ISP
@@ -39,7 +39,6 @@ export default function InfoBox() {
           </h3>
         </div>
       </div>
-
     </div>
   )
 }

@@ -49,22 +49,11 @@ export default function Banner() {
   //  }
   //   createMap(location.lat, location.lng, location.country, location.region)
   // }
-  // // generate map
-  // const createMap =(lat, lng)=> {
-  //   const map = Leaflet.map('map').setView([lat, lng, country, region], 14);
-  //   Leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  //       maxZoom: 20,
-  //       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  //   }).addTo(map);
 
-  //   Leaflet.marker([lat, lng]).addTo(map)
-  //   	.bindPopup(`${region}, ${country}`)
-  //   	.openPopup();
-  // }
   return(
     <div className="banner-search-section">
       <div className='search-box pt-4 container'>
-        <h2>
+        <h2 className="text-center">
           IP Address Tracker
         </h2>
         <form className="map-form container" onSubmit={handleSubmit}>
