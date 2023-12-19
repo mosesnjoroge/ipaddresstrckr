@@ -1,13 +1,7 @@
 import { useState } from "react";
-// import Leaflet from "leaflet";
 
 export default function Banner() {
   const [searchInput, setSearchInput] = useState("");
-  // const [address,setAddress] = useState("");
-  // const [city,setCity] = useState("");
-  // const [utc,setUtc] = useState("");
-  // const [ispProvider,setIspProvider] = useState("");
-
   // updating dynamic user entry
   const handleChange = (e) => {
     e.preventDefault();
@@ -18,37 +12,8 @@ export default function Banner() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // pass the ip address to the search_ip_address function
-    // searchIpAddress(searchInput);
-    // console.log(searchInput)
+    console.log(searchInput)
   }
-
-  // // Search for an Ipaddress
-  // async function searchIpAddress(searchInput){
-  //   const api_key = "at_9zLazwhedqY57YjmEW8ZCBzKBg3MI"
-  //   const request = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${api_key}&ipAddress=${searchInput}`)
-  //   const response = response.json()
-
-  //   // update the UI on the page
-  //   const [location, ip, isp] = response;
-  //   const cityLocation = location.city
-  //   const timezoneLocation = location.timezone
-  //   updateUI(ip, cityLocation, timezoneLocation, isp)
-  // }
-  // // update UI function
-  // const updateUI = (ip, cityLocation, timezoneLocation, isp)=> {
-  //   /* select all the elements on the page */
-  //   const address = document.querySelector(".address");
-  //   const city = document.querySelector(".location");
-  //   const utc = document.querySelector(".utc");
-  //   const isprovider = document.querySelector(".isp");
-
-
-  //   /* Update all the elements on the page */
-  //   if (createMap !== undefined && createMap !== null) {
-  //     createMap.remove()
-  //  }
-  //   createMap(location.lat, location.lng, location.country, location.region)
-  // }
 
   return(
     <div className="banner-search-section">
