@@ -1,19 +1,21 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Banner from './components/Banner';
-import InfoBox from './components/InfoBox';
-import GeoDisplay from './components/GeoDiplay';
+import Banner from './components/MapComponents/Banner';
+import Map from './components/Map';
+// import Leaflet from "leaflet";
+
 
 function App() {
 
   return (
     <div className='app'>
       <Banner/>
-      <div>
-        <InfoBox/>
+
+      <div className='pt-1'>
+
       </div>
-      <div>
-        <GeoDisplay/>
+      <div className='map'>
+        <Map />
       </div>
     </div>
   )

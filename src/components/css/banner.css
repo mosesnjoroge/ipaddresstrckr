@@ -1,0 +1,37 @@
+.banner-search-section{
+  background-color: #5bc0de;
+  height:220px;
+  position: relative;
+}
+.map-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 70%;
+}
+.input{
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  outline: none!important;
+}
+
+.input,.button{
+  border:0px;
+  padding: 10px 20px;
+}
+
+.button{
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: white;
+}
+
+.button:hover{
+  background-color: #DE795B;
+}
+
+.map{
+  height: 300px;
+}
