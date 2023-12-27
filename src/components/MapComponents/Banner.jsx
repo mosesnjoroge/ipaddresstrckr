@@ -1,4 +1,6 @@
+// import CreateMap from "../CreateMap";
 import InfoBox from "../InfoBox";
+
 
 export default function Banner() {
 
@@ -27,6 +29,10 @@ export default function Banner() {
         </div>
       </form>
       <InfoBox/>
+      {/* <CreateMap/> */}
+      {/* <div className="map">
+        <CreateMap/>
+      </div> */}
     </div>
   );
 }

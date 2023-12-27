@@ -31,3 +31,7 @@
 .button:hover{
   background-color: #DE795B;
 }
+
+.map{
+  height: 300px;
+}
