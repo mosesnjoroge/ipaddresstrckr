@@ -1,8 +1,6 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Banner from './components/MapComponents/Banner';
-import MapDisplay from './components/MapComponents/MapDisplay';
-// import GeoDisplay from './components/GeoDiplay';
 // import Leaflet from "leaflet";
 
 
@@ -11,7 +9,7 @@ function App() {
   return (
     <div className='app'>
       <Banner/>
-      <MapDisplay/>
+      {/* <MapDisplay/> */}
       <div className='pt-1'>
 
       </div>

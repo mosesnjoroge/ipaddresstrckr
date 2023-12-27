@@ -1,12 +1,26 @@
+.info-box{
+  position: relative;
+  /* width: 100%; */
+}
+
 .card-category {
   height: 100px;
-  display: flex!important;
+  display: flex;
   justify-content: space-between;
-  align-items: flex-start!important;
-  margin: 0px 16px;
-  padding: 0px 10px;
+  align-items: center;
+  /* margin: 0px 16px; */
+  padding: 0px 30px;
   border-radius: 5px;
+  width: fit-content;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background-color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top:0;
+  z-index: 999;
+  column-gap: 2rem;
+  margin: 8rem auto;
 }
 .card-category h6,h3{
   font-size: 10px;
@@ -18,7 +32,13 @@
   font-size: 25px!important;
   margin-top: 5px!important;
 }
-
+.box{
+  text-align: center;
+}
+.box:nth-of-type(n+2) {
+  border-left:1px solid black;
+  padding: 0 1rem;
+}
  /* Smallest device */
 @media (min-width: 100px) and (max-width: 575px) {
   .cards {
