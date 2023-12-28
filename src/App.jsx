@@ -1,22 +1,31 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Banner from './components/MapComponents/Banner';
-import Map from './components/Map';
-// import Leaflet from "leaflet";
+import Banner from './components/Banner';
+// import { useState } from 'react';
 
 
 function App() {
 
+  // const [value, setValue] = useState("");
+
+  // const handleChange = (e) => {
+  //   setValue(e.target.value);
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // setIp("");
+  //   // setErr("");
+  //   // setIsSearched(true);
+  //   // apiReq(value);
+  // };
   return (
     <div className='app'>
-      <Banner/>
-
-      <div className='pt-1'>
-
-      </div>
-      <div className='map'>
-        <Map />
-      </div>
+      <Banner
+        // value={value}
+        // handleSubmit={handleSubmit}
+        // onChange={handleChange}
+      />
     </div>
   )
 }
