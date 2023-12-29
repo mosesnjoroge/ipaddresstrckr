@@ -1,6 +1,6 @@
 import { MapContainer,TileLayer,Marker,Popup } from 'react-leaflet'
 import "leaflet/dist/leaflet.css";
-// import { latLng } from 'leaflet';
+
 
 export default function Map() {
   const position = [51.505, -0.09];
@@ -18,7 +18,7 @@ export default function Map() {
       />
       <Marker position={position}>
         <Popup>
-          A pretty CSS3 popup. <br />
+          Popup placeholder.
         </Popup>
       </Marker>
     </MapContainer>

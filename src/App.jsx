@@ -1,8 +1,10 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Banner from './components/Banner';
+import Banner from './components/MapComponents/Banner';
 // import { useState } from 'react';
-
+import InfoBox from './components/MapComponents/InfoBox';
+import SearchForm from './components/MapComponents/searchForm';
+import Map from './components/MapComponents/Map';
 
 function App() {
 
@@ -21,11 +23,17 @@ function App() {
   // };
   return (
     <div className='app'>
-      <Banner
-        // value={value}
-        // handleSubmit={handleSubmit}
-        // onChange={handleChange}
-      />
+      <Banner/>
+      {/* search box */}
+      <SearchForm/>
+      {/* infobox */}
+      <div>
+        <InfoBox/>
+      </div>
+      {/* map component */}
+      <div className='map'>
+        <Map/>
+      </div>
     </div>
   )
 }
