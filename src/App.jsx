@@ -23,12 +23,16 @@ function App() {
   // };
   return (
     <div className='app'>
-      <Banner/>
-      {/* search box */}
-      <SearchForm/>
-      {/* infobox */}
-      <div>
-        <InfoBox/>
+      <div className='banner-search-section'>
+        {/* banner */}
+        <Banner/>
+        {/* search box */}
+        <SearchForm/>
+        {/* infobox */}
+          <InfoBox/>
+        <div>
+
+        </div>
       </div>
       {/* map component */}
       <div className='map'>
