@@ -1,19 +1,26 @@
-// import Map from './MapComponents/Map'
-// import InfoBox from './MapComponents/InfoBox';
+import Map from './MapComponents/Map'
+import InfoBox from './MapComponents/InfoBox';
 
 
-// export default function Banner() {
+export default function Banner() {
 
-//   return(
-//     <div className="banner-search-section">
-//       <h2 className="text-center pt-2">
-//         IP Address Tracker
-//       </h2>
+  return(
+    <div className="banner-search-section">
+      <h2 className="text-center pt-2">
+        IP Address Tracker
+      </h2>
+      <form>
+        <input
 
-//       <InfoBox/>
-//       <div id='map'>
-//         <Map/>
-//       </div>
-//     </div>
-//   )
-// }
+        />
+        <button>
+
+        </button>
+      </form>
+      <InfoBox/>
+      <div id='map'>
+        <Map/>
+      </div>
+    </div>
+  )
+}
