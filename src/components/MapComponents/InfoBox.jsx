@@ -2,7 +2,7 @@
 export default function InfoBox() {
   return(
     <div className="info-box">
-      <div className="card-category hstack gap-5">
+      <div className="card-category">
         <div className="box">
           <h6>
             IP ADDRESS

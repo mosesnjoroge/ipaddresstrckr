@@ -1,15 +1,25 @@
+import { useState } from "react";
 
 export default function SearchForm(){
+  //  states
+  const [inputValue, setInputValue] = useState([]);
+
+  // get input value and store in state
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
   return(
-    <form>
+    <form
+    // onSubmit={handleSubmit}
+    >
       <div className="map-form">
         <input
           type="text"
           placeholder="Search for any IP address or domain"
           className="input"
-          id="search"
-          // value={searchInput}
-          // onChange={handleChange}
+          value={inputValue}
+          onChange={handleChange}
         />
         <button type="submit" alt="" className="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-right" viewBox="0 0 16 16">
@@ -17,6 +27,7 @@ export default function SearchForm(){
           </svg>
         </button>
       </div>
+      <p>input value:{inputValue}</p>
     </form>
   )
 }
