@@ -25,8 +25,9 @@ export default function SearchForm(){
     fetch('https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI')
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
-      setMapData(data)
+      // console.log(data)
+      console.log(data.ip)
+      // setMapData(data.ip.value)
     })
     .catch((err) => {
       console.log(err.message);
