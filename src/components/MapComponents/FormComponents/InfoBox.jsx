@@ -1,5 +1,6 @@
 
 export default function InfoBox() {
+
   return(
     <div className="info-box">
       <div className="card-category">
@@ -8,7 +9,7 @@ export default function InfoBox() {
             IP ADDRESS
           </h6>
           <h3 className="address">
-            testing
+           testing
           </h3>
         </div>
         {/* <div className="vr"></div> */}
