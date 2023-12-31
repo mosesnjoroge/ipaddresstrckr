@@ -26,12 +26,12 @@ export default function SearchForm(){
           // )
     }
     fetchData();
-  },[])
+  },[query])
 
   // get input value and store in state
-  const handleChange = (e) => {
-    query(e.target.value);
-  };
+  // const handleChange = (e) => {
+  //   query(e.target.value);
+  // };
 
   // handle submit
   const handleSubmit = (e) => {
@@ -40,6 +40,18 @@ export default function SearchForm(){
     // setIsSearched(true);
     setQuery(e.target.value);
   }
+  {/* <div className="box">
+    {data.hits.map(item => (
+        <a href={item.url}>{item.title}</a>
+      </li>
+      <h6>
+        IP ADDRESS
+      </h6>
+      <h3 className="address" key={item.ip}>
+
+      </h3>
+    ))}
+  </div> */}
 
   return(
     <div>
@@ -50,20 +62,8 @@ export default function SearchForm(){
             placeholder="Search for any IP address or domain"
             className="input"
             value={query}
-            onChange={handleChange}
+            onChange={(e) => setQuery(e.target.value)}
           />
-          <div className="box">
-            {data.hits.map(item => (
-                <a href={item.url}>{item.title}</a>
-              </li>
-              <h6>
-                IP ADDRESS
-              </h6>
-              <h3 className="address" key={item.ip}>
-
-              </h3>
-            ))}
-          </div>
 
           <button type="submit" alt="" className="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-right" viewBox="0 0 16 16">
