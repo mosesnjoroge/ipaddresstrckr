@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function SearchForm(){
   //  states
-  const [data, setData] = useState({hits: [] });
+  const [data, setData] = useState([]);
   const [query,setQuery] = useState('8.8.8');
   const [url, setUrl] = useState(
     'https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=8.8.8',
@@ -46,19 +46,19 @@ export default function SearchForm(){
   const handleClick = () => {
     setUrl(`https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${query}`)
   }
-
-  {/* <div className="box">
-    {data.hits.map(item => (
-        <a href={item.url}>{item.title}</a>
-      </li>
-      <h6>
-        IP ADDRESS
-      </h6>
-      <h3 className="address" key={item.ip}>
-
-      </h3>
-    ))}
-  </div> */}
+  // query elements
+  const queryElements = () => {data.map(query => {
+    return(
+      <InfoBox
+        key = {0}
+        ipaddress = {query.ip}
+        location = {`${query.location},${query.location.city}`}
+        timezone = {query.location.timezone}
+        isp = {query.isp}
+        // {...props}
+      />
+    )
+  })}
 
   return(
     <div>
@@ -86,10 +86,7 @@ export default function SearchForm(){
         <p>input value:{query}</p>
       </form>
       {/* infobox */}
-      <InfoBox
-
-
-      />
+      {queryElements()}
     </div>
   )
 }
