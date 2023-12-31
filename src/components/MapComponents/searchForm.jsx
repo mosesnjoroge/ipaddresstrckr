@@ -4,12 +4,33 @@ import axios from "axios";
 
 export default function SearchForm(){
   //  states
-  const [inputValue, setInputValue] = useState("");
-  const [query,setQuery] = useState('8.8.8')
+  const [query,setQuery] = useState('8.8.8');
+  const [data, setData] = useState({hits: [] });
+
+  // use effect for data retrieval
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios('https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=8.8.8',
+      );
+      setData(result.data);
+          // .then((response) => response.json())
+          // .then((data) => {
+          //   // console.log(data)
+          //   setQuery(data);
+          //   query([])
+          //   // setIpAddress('')
+          // })
+          // .catch((err) => {
+          //   console.log(err.message);
+          // }
+          // )
+    }
+    fetchData();
+  },[])
 
   // get input value and store in state
   const handleChange = (e) => {
-    setInputValue(e.target.value);
+    setQuery(e.target.value);
   };
 
   // handle submit
@@ -17,28 +38,8 @@ export default function SearchForm(){
     e.preventDefault()
     // setIp("");
     // setIsSearched(true);
-
+    setQuery(e.target.value);
   }
-
-  // use effect for data retrieval
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios('https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=`${setInputValue}`')
-          .then((response) => response.json())
-          .then((data) => {
-            // console.log(data)
-            setQuery(data);
-            query([])
-            // setIpAddress('')
-          })
-          .catch((err) => {
-            console.log(err.message);
-          }
-          )
-    }
-  },[fetchData])
-
-
 
   return(
     <div>
@@ -48,7 +49,7 @@ export default function SearchForm(){
             type="text"
             placeholder="Search for any IP address or domain"
             className="input"
-            value={inputValue}
+            value={query}
             onChange={handleChange}
           />
           <button type="submit" alt="" className="button">
@@ -57,7 +58,7 @@ export default function SearchForm(){
             </svg>
           </button>
         </div>
-        <p>input value:{inputValue}</p>
+        <p>input value:{query}</p>
       </form>
       {/* infobox */}
       <InfoBox
