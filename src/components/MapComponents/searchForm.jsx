@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import InfoBox from "./FormComponents/InfoBox";
+import axios from "axios";
 
 export default function SearchForm(){
   //  states
   const [inputValue, setInputValue] = useState("");
-  const [ipAddress, setIpAddress] = useState("");
-  // const [isSearched, setIsSearched] = useState(false);
-  const [mapData, setMapData] = useState([])
+  const [query,setQuery] = useState('8.8.8')
 
   // get input value and store in state
   const handleChange = (e) => {
     setInputValue(e.target.value);
-    fetchData
   };
 
   // handle submit
@@ -19,23 +17,29 @@ export default function SearchForm(){
     e.preventDefault()
     // setIp("");
     // setIsSearched(true);
+
   }
 
   // use effect for data retrieval
   useEffect(() => {
-    const fetchData = async() => {('https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=`${inputValue}`')
-    .then((response) => response.json())
-    .then((data) => {
-      // console.log(data)
-      console.log(data.ip)
-      setMapData(data);
-      setIpAddress('')
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });}
-    console.log(fetchData())
-  },[])
+    const fetchData = async () => {
+      const result = await axios('https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=`${setInputValue}`')
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log(data)
+            setQuery(data);
+            query([])
+            // setIpAddress('')
+          })
+          .catch((err) => {
+            console.log(err.message);
+          }
+          )
+    }
+  },[fetchData])
+
+
+
   return(
     <div>
       <form onSubmit={handleSubmit}>
@@ -57,7 +61,7 @@ export default function SearchForm(){
       </form>
       {/* infobox */}
       <InfoBox
-        ipAddress = {{}}
+        // ipAddress = {{}}
       />
       {
         // mapData.map((value) => {
