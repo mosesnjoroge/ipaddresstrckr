@@ -86,14 +86,10 @@ export default function SearchForm(){
         <p>input value:{query}</p>
       </form>
       {/* infobox */}
-      <InfoBox/>
-      {
-        // mapData.map((value) => {
-        //   return(
-        //     // value.data.location.lat
-        //   )
-        // })
-      }
+      <InfoBox
+
+
+      />
     </div>
   )
 }

@@ -5,39 +5,23 @@ export default function InfoBox() {
     <div className="info-box">
       <div className="card-category">
         <div className="box">
-          <h6>
-            IP ADDRESS
-          </h6>
-          <h3 className="address">
-           testing
-          </h3>
+          <span>IP ADDRESS</span>
+          <span className="address">testing</span>
         </div>
         {/* <div className="vr"></div> */}
         <div className="box">
-          <h6>
-            LOCATION
-          </h6>
-          <h3 className="location">
-            testing
-          </h3>
+          <span>LOCATION</span>
+          <span className="location">testing</span>
         </div>
         {/* <div className="vr"></div> */}
         <div className="box">
-          <h6 className="utc">
-            TIMEZONE
-          </h6>
-          <h3>
-            testing
-          </h3>
+          <span className="utc">TIMEZONE</span>
+          <span>testing</span>
         </div>
         {/* <div className="vr"></div> */}
         <div className="box">
-          <h6>
-            ISP
-          </h6>
-          <h3 className="isp">
-            testing
-          </h3>
+          <span>ISP</span>
+          <span className="isp">testing</span>
         </div>
       </div>
     </div>
