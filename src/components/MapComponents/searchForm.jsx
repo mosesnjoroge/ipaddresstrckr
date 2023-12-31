@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import InfoBox from "./FormComponents/InfoBox";
-import axios from "axios";
+// import Axios from "axios";
+import api from "../../service";
 
 export default function SearchForm(){
   //  states
@@ -8,16 +9,27 @@ export default function SearchForm(){
   const [query,setQuery] = useState('8.8.8');
 
   // axios instance
-  const client = axios.get({
-    baseURL: `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${query}`
-  })
+  // const client = Axios.create({
+  //   baseURL: `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${query}`
+  // })
   // use effect for data retrieval
   useEffect(() => {
     const fetchQuery = async () => {
       try{
         handleSubmit();
-        let response = await client.get(query);
+        let response = await api.get(API_URL);
         setData(response.data);
+        // data.map(query => {
+        //   return(
+        //     <InfoBox
+        //       key = {0}
+        //       ipaddress = {query.ip}
+        //       location = {`${query.location},${query.location.city}`}
+        //       timezone = {query.location.timezone}
+        //       isp = {query.isp}
+        //     />
+        //   )
+        // })
 
       }catch(error){
         // console.log(error.response.data)
@@ -27,7 +39,8 @@ export default function SearchForm(){
     }
 
     fetchQuery();
-  },[client, query])
+    // query elements
+  },[data,query])
 
   // get input value and store in state
   const handleChange = (e) => {
@@ -46,22 +59,10 @@ export default function SearchForm(){
   // const handleClick = (query) => {
   //   setUrl(`https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${query}`)
   // }
-  // query elements
-  const queryElements = () => {data.map(query => {
-    return(
-      <InfoBox
-        key = {0}
-        ipaddress = {query.ip}
-        location = {`${query.location},${query.location.city}`}
-        timezone = {query.location.timezone}
-        isp = {query.isp}
-      />
-    )
-  })}
 
   return(
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="map-form">
           <input
             type="text"
@@ -85,7 +86,7 @@ export default function SearchForm(){
         <p>input value:{query}</p>
       </form>
       {/* infobox */}
-      {queryElements()}
+      <InfoBox/>
     </div>
   )
 }
