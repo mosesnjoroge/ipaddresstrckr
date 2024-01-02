@@ -5,7 +5,8 @@ import InfoBox from './components/MapComponents/FormComponents/InfoBox';
 import SearchForm from './components/MapComponents/searchForm';
 import Map from './components/MapComponents/Map';
 import { useState, useEffect } from 'react';
-import IpifyApi from './service';
+// import IpifyApi from './service';
+import axios from 'axios';
 
 function App() {
    //  states
@@ -13,55 +14,38 @@ function App() {
    const [query,setQuery] = useState('8.8.8');
 
    // axios instance
+
+   const apiReq = (req = "") => {
+    axios
+      .get(
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${req}`
+      )
+      .then((res) => {
+        setData(res.data);
+        // setIsSearched(false);
+      })
+      .catch((error) => (error.message));
+  };
    // const client = Axios.create({
    //   baseURL: `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${query}`
    // })
    // use effect for data retrieval
-   useEffect(() => {
-     const fetchQuery = async () => {
-       try{
-         handleSubmit();
-         let response = await IpifyApi.get();
-         setData(response.data);
-         // data.map(query => {
-         //   return(
-         //     <InfoBox
-         //       key = {0}
-         //       ipaddress = {query.ip}
-         //       location = {`${query.location},${query.location.city}`}
-         //       timezone = {query.location.timezone}
-         //       isp = {query.isp}
-         //     />
-         //   )
-         // })
+  useEffect(() => {
+    apiReq()
+  }, []);
 
-       }catch(error){
-        //  console.log(error)
-        //  console.log(error.response.status)
-        //  console.log(error.response.headers)
-       }
-     }
-     fetchQuery();
-     // query elements
-   },[])
+  // get input value and store in state
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+  };
 
-   // get input value and store in state
-   const handleChange = (e) => {
-     setQuery(e.target.value);
-   };
+  // handle submit
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setData("");
+    console.log(apiReq(query))
+  }
 
-   // handle submit
-   const handleSubmit = (e) => {
-     e.preventDefault()
-
-     // setIp("");
-     // setIsSearched(true);
-     setQuery(e.target.value);
-   }
-   // handle click
-   // const handleClick = (query) => {
-   //   setUrl(`https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${query}`)
-   // }
   return (
     <div className='app'>
       <div className='banner-search-section'>
@@ -70,13 +54,18 @@ function App() {
         {/* search box */}
         <div>
           <SearchForm
-            handleSubmit ={handleSubmit}
             handleChange={handleChange}
+            handleSubmit ={handleSubmit}
           />
         </div>
         {/* infobox */}
         <div>
-          <InfoBox/>
+          <InfoBox
+            ipaddress = {data.ip}
+            location={`${data.location.city}, ${data.location.country}`}
+            timezone={data.location.timezone}
+            isp={data.isp}
+          />
         </div>
       </div>
       {/* map component */}
