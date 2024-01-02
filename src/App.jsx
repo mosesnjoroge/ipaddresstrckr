@@ -17,39 +17,38 @@ function App() {
    //   baseURL: `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${query}`
    // })
    // use effect for data retrieval
-  //  useEffect(() => {
-  //    const fetchQuery = async () => {
-  //      try{
-  //        handleSubmit();
-  //        let response = await api.get(API_URL);
-  //        setData(response.data);
-  //        // data.map(query => {
-  //        //   return(
-  //        //     <InfoBox
-  //        //       key = {0}
-  //        //       ipaddress = {query.ip}
-  //        //       location = {`${query.location},${query.location.city}`}
-  //        //       timezone = {query.location.timezone}
-  //        //       isp = {query.isp}
-  //        //     />
-  //        //   )
-  //        // })
+   useEffect(() => {
+     const fetchQuery = async () => {
+       try{
+         handleSubmit();
+         let response = await IpifyApi.get();
+         setData(response.data);
+         // data.map(query => {
+         //   return(
+         //     <InfoBox
+         //       key = {0}
+         //       ipaddress = {query.ip}
+         //       location = {`${query.location},${query.location.city}`}
+         //       timezone = {query.location.timezone}
+         //       isp = {query.isp}
+         //     />
+         //   )
+         // })
 
-  //      }catch(error){
-  //        // console.log(error.response.data)
-  //        // console.log(error.response.status)
-  //        // console.log(error.response.headers)
-  //      }
-  //    }
-
-  //    fetchQuery();
-  //    // query elements
-  //  },[data,query])
+       }catch(error){
+        //  console.log(error)
+        //  console.log(error.response.status)
+        //  console.log(error.response.headers)
+       }
+     }
+     fetchQuery();
+     // query elements
+   },[])
 
    // get input value and store in state
-  //  const handleChange = (e) => {
-  //    setQuery(e.target.value);
-  //  };
+   const handleChange = (e) => {
+     setQuery(e.target.value);
+   };
 
    // handle submit
    const handleSubmit = (e) => {
@@ -72,6 +71,7 @@ function App() {
         <div>
           <SearchForm
             handleSubmit ={handleSubmit}
+            handleChange={handleChange}
           />
         </div>
         {/* infobox */}
