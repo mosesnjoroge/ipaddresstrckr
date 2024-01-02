@@ -1,18 +1,18 @@
 
-export default function SearchForm(){
+export default function SearchForm({handleSubmit, query, handleChange}){
 
   return(
     <div>
       <form
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
       >
         <div className="map-form">
           <input
             type="text"
             placeholder="Search for any IP address or domain"
             className="input"
-            // value={query}
-            // onChange={handleChange}
+            value={query}
+            onChange={handleChange}
           />
 
           <button
