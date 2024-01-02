@@ -13,6 +13,7 @@ export default function InfoBox() {
           {/* <span className="location">{location}</span> */}
         </div>
         <div className="box">
+          <span>TIMEZONE</span>
           {/* <span className="utc">{timezone}</span> */}
         </div>
         <div className="box">

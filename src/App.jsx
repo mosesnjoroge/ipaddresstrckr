@@ -5,6 +5,7 @@ import InfoBox from './components/MapComponents/FormComponents/InfoBox';
 import SearchForm from './components/MapComponents/searchForm';
 import Map from './components/MapComponents/Map';
 import { useState, useEffect } from 'react';
+import IpifyApi from './service';
 
 function App() {
    //  states
@@ -69,7 +70,9 @@ function App() {
         <Banner/>
         {/* search box */}
         <div>
-          <SearchForm/>
+          <SearchForm
+            handleSubmit ={handleSubmit}
+          />
         </div>
         {/* infobox */}
         <div>
