@@ -10,7 +10,7 @@ import axios from 'axios';
 
 function App() {
    //  states
-   const [data, setData] = useState([]);
+   const [ip, setIp] = useState([]);
    const [query,setQuery] = useState('8.8.8');
 
    // axios instance
@@ -18,13 +18,13 @@ function App() {
    const apiReq = (req = "") => {
     axios
       .get(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${req}`
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&domain=${req}`
       )
       .then((res) => {
-        setData(res.data);
+        console.log(setIp(res.data));
         // setIsSearched(false);
       })
-      .catch((error) => (error.message));
+      .catch((error) => (error.status));
   };
    // const client = Axios.create({
    //   baseURL: `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${query}`
@@ -42,7 +42,7 @@ function App() {
   // handle submit
   const handleSubmit = (e) => {
     e.preventDefault()
-    setData("");
+    setIp("");
     console.log(apiReq(query))
   }
 
@@ -60,12 +60,14 @@ function App() {
         </div>
         {/* infobox */}
         <div>
-          <InfoBox
-            ipaddress = {data.ip}
-            location={`${data.location.city}, ${data.location.country}`}
-            timezone={data.location.timezone}
-            isp={data.isp}
-          />
+          {ip && (
+            <InfoBox
+              ipaddress = {ip.ip}
+              location={`${ip.location.city}, ${ip.location.country}`}
+              timezone={ip.location.timezone}
+              isp={ip.isp}
+            />)
+          }
         </div>
       </div>
       {/* map component */}

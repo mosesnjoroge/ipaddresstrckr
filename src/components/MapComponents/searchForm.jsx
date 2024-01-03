@@ -1,4 +1,6 @@
 
+import PropTypes from 'prop-types';
+
 export default function SearchForm({handleSubmit, query, handleChange}){
 
   return(
@@ -26,8 +28,18 @@ export default function SearchForm({handleSubmit, query, handleChange}){
             </svg>
           </button>
         </div>
-        {/* <p>input value:{query}</p> */}
+        <p>input value:{query}</p>
       </form>
     </div>
   )
 }
+
+SearchForm.propTypes = {
+  query: PropTypes.string,
+};
+SearchForm.propTypes = {
+  handleSubmit: PropTypes.func,
+};
+SearchForm.propTypes = {
+  handleChange: PropTypes.func,
+};
