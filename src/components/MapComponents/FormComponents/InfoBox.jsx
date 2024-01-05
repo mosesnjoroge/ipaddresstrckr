@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 
 export default function InfoBox({
-  ipaddress="null",
-  location="null",
-  timezone="null",
-  isp="null"
+  ipaddress,
+  location,
+  city,
+  timezone,
+  isp
 }) {
 
   return(
@@ -16,7 +17,7 @@ export default function InfoBox({
         </div>
         <div className="box">
           <span>LOCATION</span>
-          <div className="location">{location}</div>
+          <div className="location">{location} {city}</div>
         </div>
         <div className="box">
           <span>TIMEZONE</span>
@@ -36,6 +37,9 @@ InfoBox.propTypes = {
 };
 InfoBox.propTypes = {
   location: PropTypes.string,
+};
+InfoBox.propTypes = {
+  city: PropTypes.string,
 };
 InfoBox.propTypes = {
   timezone: PropTypes.string,

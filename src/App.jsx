@@ -12,39 +12,47 @@ function App() {
    //  states
    const [ip, setIp] = useState([]);
    const [query,setQuery] = useState('8.8.8');
+   const [location, setLocation] = useState("");
+   const [city, setCity] = useState("");
+   const [timezone, setTimezone] = useState("");
+   const [isp,setIsp] = useState("");
 
-   // axios instance
+   // get input value and store in state
+   const handleChange = (e) => {
+     setQuery(e.target.value);
+    };
 
-   const apiReq = (req = "") => {
-    axios
-      .get(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${req}`
-      )
-      .then((res) => {
-        console.log(setIp(res.data));
-        // setIsSearched(false);
-      })
-      .catch((error) => (error.status));
-  };
-   // const client = Axios.create({
-   //   baseURL: `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${query}`
-   // })
-   // use effect for data retrieval
-  useEffect(() => {
-    apiReq()
-  }, []);
+    // use effect for data retrieval
+    useEffect(() => {
+       apiReq()
+    },[]);
+    // handle submit
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      apiReq(query)
+      // setIp("");
+      // setLocation("");
+      // setCity("");
+      // setTimezone("");
+      // setIsp("");
+    }
+    // axios instance convert this function to async/await
 
-  // get input value and store in state
-  const handleChange = (e) => {
-    setQuery(e.target.value);
-  };
+    const apiReq = (req = "") => {
+     axios
+       .get(
+         `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${req}`
+       )
+       .then((res) => {
+        setIp(res.data)
+        setCity(res.data.location.city)
+        setTimezone(res.data.location.timezone)
+        setLocation(res.data.country)
+        setIsp(res.data.isp)
+       })
+       .catch((error) => (error.status));
+    };
 
-  // handle submit
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setIp("");
-    console.log(apiReq(query))
-  }
 
   return (
     <div className='app'>
@@ -63,9 +71,10 @@ function App() {
           {ip && (
             <InfoBox
               ipaddress = {ip.ip}
-              location={`${ip.location.city}, ${ip.location.country}`}
-              timezone={ip.location.timezone}
-              isp={ip.isp}
+              location={location}
+              city={city}
+              timezone={timezone}
+              isp={isp}
             />)
           }
         </div>
