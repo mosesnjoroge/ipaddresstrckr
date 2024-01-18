@@ -1,12 +1,11 @@
 import { MapContainer,TileLayer,Marker,Popup } from 'react-leaflet'
 import "leaflet/dist/leaflet.css";
+import PropTypes from 'prop-types';
 
-
-// eslint-disable-next-line react/prop-types
-export default function Map({ lat = 13.54232, long = 0.72934 }) {
+export default function Map({latitude,longitude}) {
 
   return(
-    <MapContainer center={[lat,long]} zoom={13} scrollWheelZoom={false}
+    <MapContainer center={[latitude,longitude]} zoom={13} scrollWheelZoom={false}
       style={{
         width:'100vw',
         height: '100vh',
@@ -14,7 +13,7 @@ export default function Map({ lat = 13.54232, long = 0.72934 }) {
       }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-      <Marker position={[lat,long]}>
+      <Marker position={[latitude,longitude]}>
         <Popup>
           Popup placeholder.
         </Popup>
@@ -22,3 +21,10 @@ export default function Map({ lat = 13.54232, long = 0.72934 }) {
     </MapContainer>
   )
 }
+
+Map.PropTypes = {
+  latitude: PropTypes,
+};
+Map.PropTypes = {
+  longitude: PropTypes,
+};

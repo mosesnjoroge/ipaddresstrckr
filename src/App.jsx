@@ -9,13 +9,16 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-   //  states
-   const [ip, setIp] = useState([]);
-   const [query,setQuery] = useState('8.8.8');
-   const [location, setLocation] = useState("");
-   const [city, setCity] = useState("");
-   const [timezone, setTimezone] = useState("");
-   const [isp,setIsp] = useState("");
+
+  //  states
+    const [ip, setIp] = useState([]);
+    const [query,setQuery] = useState('8.8.8');
+    const [country, setCountry] = useState("");
+    const [city, setCity] = useState("");
+    const [timezone, setTimezone] = useState("");
+    const [isp,setIsp] = useState("");
+    const [setLatitude] = useState(parseInt,10);
+    const [setLongitude] = useState(parseInt,10)
 
    // axios instance convert this function to async/await
 
@@ -25,20 +28,19 @@ function App() {
         `https://geo.ipify.org/api/v2/country,city?apiKey=at_AlbBdwk9jiqFPsluLMY6m0MYMA0oA&ipAddress=${req}`
       )
       .then((res) => {
-       setIp(res.data)
-       setCity(res.data.location.city)
-       setTimezone(res.data.location.timezone)
-      //  setLocation(res.data.country)
-      console.log(res.data)
-      // country api extraction
-      console.log(res.data.location.country)
+        setIp(res.data)
+        setCity(res.data.location.city)
+        setCountry(res.data.location.country)
+        setTimezone(res.data.location.timezone)
       // longitude and lat api extraction
-      console.log(res.data.location.lat)
-      console.log(res.data.location.lng)
-
-       setIsp(res.data.isp)
+        setLatitude(ip.location.lat)
+      // console.log(res.data.location.lat)
+        setLongitude(ip.location.lng)
+      // console.log(res.data.location.lng)
+        setIsp(res.data.isp)
+        // console.log(ip.location.lat)
       })
-      .catch((error) => (console.log(error.status)));
+        .catch((error) => (console.log(error.status)));
    };
 
    // use effect for data retrieval
@@ -48,7 +50,7 @@ function App() {
 
    // get input value and store in state
    const handleChange = (e) => {
-     setQuery(e.target.value);
+      setQuery(e.target.value);
     };
 
     // handle submit
@@ -56,7 +58,7 @@ function App() {
       e.preventDefault()
       setIp("");
       apiReq(query)
-      setLocation("");
+      setCountry("");
       setCity("");
       setTimezone("");
       setIsp("");
@@ -79,7 +81,7 @@ function App() {
         <div>
           <InfoBox
             ipaddress = {ip.ip}
-            location={location}
+            country={country}
             city={city}
             timezone={timezone}
             isp={isp}
@@ -90,7 +92,11 @@ function App() {
       </div>
       {/* map component */}
       <div className='map'>
-        <Map/>
+        <Map
+          lat={ip.location.lat}
+          long = {ip.ip.location.long}
+          // coordinates = {{ip.location.lat} {ip.location.long}}
+        />
       </div>
     </div>
   )

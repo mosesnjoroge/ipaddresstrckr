@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export default function InfoBox({
   ipaddress,
-  location,
+  country,
   city,
   timezone,
   isp
@@ -18,7 +18,7 @@ export default function InfoBox({
         <div className="box">
           <span>LOCATION</span>
           <span>
-            <div className="location">{city}{location}</div>
+            <div className="location">{city}, {country}</div>
           </span>
         </div>
         <div className="box">
@@ -38,7 +38,7 @@ InfoBox.propTypes = {
   ipaddress: PropTypes.string,
 };
 InfoBox.propTypes = {
-  location: PropTypes.string,
+  country: PropTypes.string,
 };
 InfoBox.propTypes = {
   city: PropTypes.string,
