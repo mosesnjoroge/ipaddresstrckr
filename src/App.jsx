@@ -28,7 +28,14 @@ function App() {
        setIp(res.data)
        setCity(res.data.location.city)
        setTimezone(res.data.location.timezone)
-       setLocation(res.data.country)
+      //  setLocation(res.data.country)
+      console.log(res.data)
+      // country api extraction
+      console.log(res.data.location.country)
+      // longitude and lat api extraction
+      console.log(res.data.location.lat)
+      console.log(res.data.location.lng)
+
        setIsp(res.data.isp)
       })
       .catch((error) => (console.log(error.status)));
@@ -49,10 +56,10 @@ function App() {
       e.preventDefault()
       setIp("");
       apiReq(query)
-      // setLocation("");
-      // setCity("");
-      // setTimezone("");
-      // setIsp("");
+      setLocation("");
+      setCity("");
+      setTimezone("");
+      setIsp("");
     }
 
 
