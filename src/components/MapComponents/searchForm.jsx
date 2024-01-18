@@ -8,7 +8,7 @@ export default function SearchForm({handleSubmit, query, handleChange}){
       <div className="map-form">
         <input
           type="text"
-          placeholder="Search for any IP address or domain"
+          placeholder="Search for any IP address location"
           className="input"
           value={query}
           onChange={handleChange}

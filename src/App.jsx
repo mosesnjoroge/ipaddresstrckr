@@ -17,41 +17,43 @@ function App() {
    const [timezone, setTimezone] = useState("");
    const [isp,setIsp] = useState("");
 
+   // axios instance convert this function to async/await
+
+   const apiReq = (req = "") => {
+    axios
+      .get(
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_AlbBdwk9jiqFPsluLMY6m0MYMA0oA&ipAddress=${req}`
+      )
+      .then((res) => {
+       setIp(res.data)
+       setCity(res.data.location.city)
+       setTimezone(res.data.location.timezone)
+       setLocation(res.data.country)
+       setIsp(res.data.isp)
+      })
+      .catch((error) => (console.log(error.status)));
+   };
+
+   // use effect for data retrieval
+   useEffect(() => {
+      apiReq()
+   },[]);
+
    // get input value and store in state
    const handleChange = (e) => {
      setQuery(e.target.value);
     };
 
-    // use effect for data retrieval
-    useEffect(() => {
-       apiReq()
-    },[]);
     // handle submit
     const handleSubmit = (e) => {
       e.preventDefault()
+      setIp("");
       apiReq(query)
-      // setIp("");
       // setLocation("");
       // setCity("");
       // setTimezone("");
       // setIsp("");
     }
-    // axios instance convert this function to async/await
-
-    const apiReq = (req = "") => {
-     axios
-       .get(
-         `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${req}`
-       )
-       .then((res) => {
-        setIp(res.data)
-        setCity(res.data.location.city)
-        setTimezone(res.data.location.timezone)
-        setLocation(res.data.country)
-        setIsp(res.data.isp)
-       })
-       .catch((error) => (error.status));
-    };
 
 
   return (
@@ -68,15 +70,15 @@ function App() {
         </div>
         {/* infobox */}
         <div>
-          {ip && (
-            <InfoBox
-              ipaddress = {ip.ip}
-              location={location}
-              city={city}
-              timezone={timezone}
-              isp={isp}
-            />)
-          }
+          <InfoBox
+            ipaddress = {ip.ip}
+            location={location}
+            city={city}
+            timezone={timezone}
+            isp={isp}
+          />
+          {/* {ip && (
+          } */}
         </div>
       </div>
       {/* map component */}
