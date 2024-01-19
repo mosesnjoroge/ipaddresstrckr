@@ -5,7 +5,6 @@ import InfoBox from './components/MapComponents/FormComponents/InfoBox';
 import SearchForm from './components/MapComponents/searchForm';
 import Map from './components/MapComponents/Map';
 import { useState, useEffect } from 'react';
-// import IpifyApi from './service';
 import axios from 'axios';
 
 function App() {
@@ -28,17 +27,16 @@ function App() {
         `https://geo.ipify.org/api/v2/country,city?apiKey=at_AlbBdwk9jiqFPsluLMY6m0MYMA0oA&ipAddress=${req}`
       )
       .then((res) => {
-        setIp(res.data)
-        setCity(res.data.location.city)
-        setCountry(res.data.location.country)
-        setTimezone(res.data.location.timezone)
+        setIp(res.data.ip);
+        setCity(res.data.location.city);
+        setCountry(res.data.location.country);
+        setTimezone(res.data.location.timezone);
       // longitude and lat api extraction
-        setLatitude(res.data.location.lat)
+        setLatitude(res.data.location.lat);
       // console.log(res.data.location.lat)
-        setLongitude(res.data.location.lng)
+        setLongitude(res.data.location.lng);
       // console.log(res.data.location.lng)
-        setIsp(res.data.isp)
-        // console.log(ip.location.lat)
+        setIsp(res.data.isp);
       })
         .catch((error) => (console.log(error.status)));
    };
@@ -64,7 +62,6 @@ function App() {
       setIsp("");
     }
 
-
   return (
     <div className='app'>
       <div className='banner-search-section'>
@@ -86,8 +83,6 @@ function App() {
             timezone={timezone}
             isp={isp}
           />
-          {/* {ip && (
-          } */}
         </div>
       </div>
       {/* map component */}
@@ -95,7 +90,6 @@ function App() {
         <Map
           lat={latitude}
           long = {longitude}
-          // coordinates = {{ip.location.lat} {ip.location.long}}
         />
       </div>
     </div>
