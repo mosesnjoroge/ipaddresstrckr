@@ -1,11 +1,11 @@
-
 import PropTypes from 'prop-types';
+
 
 export default function SearchForm({handleSubmit, query, handleChange}){
 
   return(
     <form>
-      <div className="map-form">
+      <div className="map-form pt-2">
         <input
           type="text"
           placeholder="Search for any IP address location"
