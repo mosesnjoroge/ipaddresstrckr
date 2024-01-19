@@ -6,6 +6,7 @@ import SearchForm from './components/MapComponents/searchForm';
 import Map from './components/MapComponents/Map';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useRef } from 'react';
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
     const [isp,setIsp] = useState("");
     const [latitude, setLatitude] = useState();
     const [longitude, setLongitude] = useState();
-
+    const [inputRef] = useRef(null);
 
    // axios instance convert this function to async/await
 

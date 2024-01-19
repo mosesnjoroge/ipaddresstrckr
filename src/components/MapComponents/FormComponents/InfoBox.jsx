@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 export default function InfoBox({
   ipaddress,
@@ -7,6 +8,7 @@ export default function InfoBox({
   timezone,
   isp
 }) {
+
 
   return(
     <div className="info-box">

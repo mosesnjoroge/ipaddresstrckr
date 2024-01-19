@@ -1,7 +1,8 @@
-
 import PropTypes from 'prop-types';
 
+
 export default function SearchForm({handleSubmit, query, handleChange}){
+
 
   return(
     <form>
