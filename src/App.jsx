@@ -17,8 +17,8 @@ function App() {
     const [city, setCity] = useState("");
     const [timezone, setTimezone] = useState("");
     const [isp,setIsp] = useState("");
-    const [latitude, setLatitude] = useState(parseInt,10);
-    const [longitude, setLongitude] = useState(parseInt,10)
+    const [latitude, setLatitude] = useState();
+    const [longitude, setLongitude] = useState();
 
    // axios instance convert this function to async/await
 
