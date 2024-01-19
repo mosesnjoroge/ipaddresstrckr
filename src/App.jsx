@@ -10,7 +10,7 @@ import axios from 'axios';
 function App() {
 
   //  states
-    const [ip, setIp] = useState("");
+    const [ip, setIp] = useState([]);
     const [query,setQuery] = useState('8.8.8');
     const [country, setCountry] = useState("");
     const [city, setCity] = useState("");
@@ -18,8 +18,7 @@ function App() {
     const [isp,setIsp] = useState("");
     const [latitude, setLatitude] = useState();
     const [longitude, setLongitude] = useState();
-    const [isSearched, setIsSearched] = useState(false)
-    const [error, setError] = useState(null);
+
 
    // axios instance convert this function to async/await
 
@@ -29,27 +28,18 @@ function App() {
         `https://geo.ipify.org/api/v2/country,city?apiKey=at_AlbBdwk9jiqFPsluLMY6m0MYMA0oA&ipAddress=${req}`
       )
       .then((res) => {
-        setStatus('success');
         setIp(res.data.ip);
-        // console.log(res.data.ip)
         setCity(res.data.location.city);
         setCountry(res.data.location.country);
         setTimezone(res.data.location.timezone);
-        // longitude and lat api extraction
         setLatitude(res.data.location.lat);
-        // console.log(res.data.location.lat)
         setLongitude(res.data.location.lng);
-        // console.log(res.data.location.lng)
-        // setIsSearched(false)
         setIsp(res.data.isp);
       })
-        .catch((error) => {
-          this.setStatus('error');
-          error.alert('the ip address search is not valid');
-          setError(true);
+        .catch((err) => {
+          console.log(err);
           }
         );
-
    };
 
    // use effect for data retrieval
@@ -63,19 +53,15 @@ function App() {
     };
 
     // handle submit
-    const handleSubmit = (e) => {
+    async function handleSubmit(e) {
       e.preventDefault()
-      setIsSearched(true);
-      try {
-        setIp("");
-        apiReq(query)
-        setCountry("");
-        setCity("");
-        setTimezone("");
-        setIsp("");
-      } catch (err) {
-        // setError(err)
-      }
+      apiReq();
+      setIp("");
+      apiReq(query);
+      setCountry("");
+      setCity("");
+      setTimezone("");
+      setIsp("");
     }
 
   return (
@@ -88,21 +74,17 @@ function App() {
           <SearchForm
             handleChange={handleChange}
             handleSubmit ={handleSubmit}
-            {error !== null ?
-              {error}
-            }
           />
         </div>
         {/* infobox */}
         <div>
           <InfoBox
-              ipaddress = {ip}
-              country={country}
-              city={city}
-              timezone={timezone}
-              isp={isp}
+            ipaddress = {ip}
+            country={country}
+            city={city}
+            timezone={timezone}
+            isp={isp}
           />
-
         </div>
       </div>
       {/* map component */}

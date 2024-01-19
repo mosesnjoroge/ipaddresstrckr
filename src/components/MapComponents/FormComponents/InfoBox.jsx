@@ -18,7 +18,7 @@ export default function InfoBox({
         <div className="box">
           <span>LOCATION</span>
           <span>
-            <div className="location">{city}, {country}</div>
+            <div className="location">{city} {country}</div>
           </span>
         </div>
         <div className="box">
