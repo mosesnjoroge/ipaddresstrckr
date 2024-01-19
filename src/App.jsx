@@ -5,64 +5,63 @@ import InfoBox from './components/MapComponents/FormComponents/InfoBox';
 import SearchForm from './components/MapComponents/searchForm';
 import Map from './components/MapComponents/Map';
 import { useState, useEffect } from 'react';
-import IpifyApi from './service';
+import axios from 'axios';
 
 function App() {
-   //  states
-   const [data, setData] = useState([]);
-   const [query,setQuery] = useState('8.8.8');
 
-   // axios instance
-   // const client = Axios.create({
-   //   baseURL: `https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${query}`
-   // })
+  //  states
+    const [ip, setIp] = useState([]);
+    const [query,setQuery] = useState('8.8.8');
+    const [country, setCountry] = useState("");
+    const [city, setCity] = useState("");
+    const [timezone, setTimezone] = useState("");
+    const [isp,setIsp] = useState("");
+    const [latitude, setLatitude] = useState();
+    const [longitude, setLongitude] = useState();
+
+   // axios instance convert this function to async/await
+
+   const apiReq = (req = "") => {
+    axios
+      .get(
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_AlbBdwk9jiqFPsluLMY6m0MYMA0oA&ipAddress=${req}`
+      )
+      .then((res) => {
+        setIp(res.data.ip);
+        setCity(res.data.location.city);
+        setCountry(res.data.location.country);
+        setTimezone(res.data.location.timezone);
+      // longitude and lat api extraction
+        setLatitude(res.data.location.lat);
+      // console.log(res.data.location.lat)
+        setLongitude(res.data.location.lng);
+      // console.log(res.data.location.lng)
+        setIsp(res.data.isp);
+      })
+        .catch((error) => (console.log(error.status)));
+   };
+
    // use effect for data retrieval
-  //  useEffect(() => {
-  //    const fetchQuery = async () => {
-  //      try{
-  //        handleSubmit();
-  //        let response = await api.get(API_URL);
-  //        setData(response.data);
-  //        // data.map(query => {
-  //        //   return(
-  //        //     <InfoBox
-  //        //       key = {0}
-  //        //       ipaddress = {query.ip}
-  //        //       location = {`${query.location},${query.location.city}`}
-  //        //       timezone = {query.location.timezone}
-  //        //       isp = {query.isp}
-  //        //     />
-  //        //   )
-  //        // })
-
-  //      }catch(error){
-  //        // console.log(error.response.data)
-  //        // console.log(error.response.status)
-  //        // console.log(error.response.headers)
-  //      }
-  //    }
-
-  //    fetchQuery();
-  //    // query elements
-  //  },[data,query])
+   useEffect(() => {
+      apiReq()
+   },[]);
 
    // get input value and store in state
-  //  const handleChange = (e) => {
-  //    setQuery(e.target.value);
-  //  };
+   const handleChange = (e) => {
+      setQuery(e.target.value);
+    };
 
-   // handle submit
-   const handleSubmit = (e) => {
-     e.preventDefault()
+    // handle submit
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      setIp("");
+      apiReq(query)
+      setCountry("");
+      setCity("");
+      setTimezone("");
+      setIsp("");
+    }
 
-     // setIp("");
-     // setIsSearched(true);
-     setQuery(e.target.value);
-   }
-   // handle click
-   // const handleClick = (query) => {
-   //   setUrl(`https://geo.ipify.org/api/v2/country,city?apiKey=at_9zLazwhedqY57YjmEW8ZCBzKBg3MI&ipAddress=${query}`)
-   // }
   return (
     <div className='app'>
       <div className='banner-search-section'>
@@ -71,17 +70,27 @@ function App() {
         {/* search box */}
         <div>
           <SearchForm
+            handleChange={handleChange}
             handleSubmit ={handleSubmit}
           />
         </div>
         {/* infobox */}
         <div>
-          <InfoBox/>
+          <InfoBox
+            ipaddress = {ip.ip}
+            country={country}
+            city={city}
+            timezone={timezone}
+            isp={isp}
+          />
         </div>
       </div>
       {/* map component */}
       <div className='map'>
-        <Map/>
+        <Map
+          lat={latitude}
+          long = {longitude}
+        />
       </div>
     </div>
   )

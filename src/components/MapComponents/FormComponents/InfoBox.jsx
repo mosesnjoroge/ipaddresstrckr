@@ -1,26 +1,51 @@
+import PropTypes from 'prop-types';
 
-export default function InfoBox() {
+export default function InfoBox({
+  ipaddress,
+  country,
+  city,
+  timezone,
+  isp
+}) {
 
   return(
     <div className="info-box">
       <div className="card-category">
         <div className="box">
           <span>IP ADDRESS</span>
-          {/* <span className="address">{ipaddress}</span> */}
+          <div className="address">{ipaddress}</div>
         </div>
         <div className="box">
           <span>LOCATION</span>
-          {/* <span className="location">{location}</span> */}
+          <span>
+            <div className="location">{city}, {country}</div>
+          </span>
         </div>
         <div className="box">
           <span>TIMEZONE</span>
-          {/* <span className="utc">{timezone}</span> */}
+          <div className="utc">{timezone}</div>
         </div>
         <div className="box">
           <span>ISP</span>
-          {/* <span className="isp">{isp}</span> */}
+          <div className="isp">{isp}</div>
         </div>
       </div>
     </div>
   )
 }
+
+InfoBox.propTypes = {
+  ipaddress: PropTypes.string,
+};
+InfoBox.propTypes = {
+  country: PropTypes.string,
+};
+InfoBox.propTypes = {
+  city: PropTypes.string,
+};
+InfoBox.propTypes = {
+  timezone: PropTypes.string,
+};
+InfoBox.propTypes = {
+  isp: PropTypes.string,
+};
