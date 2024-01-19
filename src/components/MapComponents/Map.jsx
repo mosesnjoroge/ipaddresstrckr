@@ -2,10 +2,10 @@ import { MapContainer,TileLayer,Marker,Popup } from 'react-leaflet'
 import "leaflet/dist/leaflet.css";
 import PropTypes from 'prop-types';
 
-export default function Map({latitude,longitude}) {
+export default function Map({lat,long}) {
 
   return(
-    <MapContainer center={[latitude,longitude]} zoom={13} scrollWheelZoom={false}
+    <MapContainer center={[lat,long]} zoom={13} scrollWheelZoom={false}
       style={{
         width:'100vw',
         height: '100vh',
@@ -13,7 +13,7 @@ export default function Map({latitude,longitude}) {
       }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-      <Marker position={[latitude,longitude]}>
+      <Marker position={[lat,long]}>
         <Popup>
           Popup placeholder.
         </Popup>
@@ -23,8 +23,8 @@ export default function Map({latitude,longitude}) {
 }
 
 Map.PropTypes = {
-  latitude: PropTypes,
+  lat: PropTypes,
 };
 Map.PropTypes = {
-  longitude: PropTypes,
+  long: PropTypes,
 };

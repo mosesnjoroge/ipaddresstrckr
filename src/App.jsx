@@ -17,8 +17,8 @@ function App() {
     const [city, setCity] = useState("");
     const [timezone, setTimezone] = useState("");
     const [isp,setIsp] = useState("");
-    const [setLatitude] = useState(parseInt,10);
-    const [setLongitude] = useState(parseInt,10)
+    const [latitude, setLatitude] = useState(parseInt,10);
+    const [longitude, setLongitude] = useState(parseInt,10)
 
    // axios instance convert this function to async/await
 
@@ -33,9 +33,9 @@ function App() {
         setCountry(res.data.location.country)
         setTimezone(res.data.location.timezone)
       // longitude and lat api extraction
-        setLatitude(ip.location.lat)
+        setLatitude(res.data.location.lat)
       // console.log(res.data.location.lat)
-        setLongitude(ip.location.lng)
+        setLongitude(res.data.location.lng)
       // console.log(res.data.location.lng)
         setIsp(res.data.isp)
         // console.log(ip.location.lat)
@@ -93,8 +93,8 @@ function App() {
       {/* map component */}
       <div className='map'>
         <Map
-          lat={ip.location.lat}
-          long = {ip.ip.location.long}
+          lat={latitude}
+          long = {longitude}
           // coordinates = {{ip.location.lat} {ip.location.long}}
         />
       </div>
