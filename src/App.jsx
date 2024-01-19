@@ -10,7 +10,7 @@ import axios from 'axios';
 function App() {
 
   //  states
-    const [ip, setIp] = useState([]);
+    const [ip, setIp] = useState("8.8.8");
     const [query,setQuery] = useState('8.8.8');
     const [country, setCountry] = useState("");
     const [city, setCity] = useState("");
@@ -18,7 +18,7 @@ function App() {
     const [isp,setIsp] = useState("");
     const [latitude, setLatitude] = useState();
     const [longitude, setLongitude] = useState();
-
+    const [isSearched, setIsSearched] = useState(false)
    // axios instance convert this function to async/await
 
    const apiReq = (req = "") => {
@@ -27,6 +27,7 @@ function App() {
         `https://geo.ipify.org/api/v2/country,city?apiKey=at_AlbBdwk9jiqFPsluLMY6m0MYMA0oA&ipAddress=${req}`
       )
       .then((res) => {
+        setIsSearched(false)
         setIp(res.data.ip);
         setCity(res.data.location.city);
         setCountry(res.data.location.country);
@@ -54,6 +55,7 @@ function App() {
     // handle submit
     const handleSubmit = (e) => {
       e.preventDefault()
+      setIsSearched(true);
       setIp("");
       apiReq(query)
       setCountry("");
@@ -77,11 +79,11 @@ function App() {
         {/* infobox */}
         <div>
           <InfoBox
-            ipaddress = {ip.ip}
-            country={country}
-            city={city}
-            timezone={timezone}
-            isp={isp}
+              ipaddress = {isSearched ? ip.ip : '8.8.8'}
+              country={country}
+              city={city}
+              timezone={timezone}
+              isp={isp}
           />
         </div>
       </div>
